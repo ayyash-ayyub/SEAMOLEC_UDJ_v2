@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Jawaban Benar"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="32sp"/>
+
+    <TextView
+        android:id="@+id/tvJawabanBenar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="20 dari 20"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="25sp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:text="Persentase"
+        android:textStyle="bold"
+        android:textSize="32sp"/>
+
+    <TextView
+        android:id="@+id/tvJawabanPersen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="100%"
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textSize="40sp"/>
+
+    <Button
+        android:text="Tutup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2" />
+
+</LinearLayout>
