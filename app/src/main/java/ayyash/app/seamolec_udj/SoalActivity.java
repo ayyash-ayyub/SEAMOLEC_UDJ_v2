@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -23,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,6 +63,7 @@ public class SoalActivity extends AppCompatActivity {
 
     String JSON_ID_SOAL = "id_soal";
     String JSON_QUESTION_TEXT = "question_text";
+    String JSON_GAMBAR = "gambar";
     String JSON_OPSI_SOAL = "opsi";
 
     String JSON_ANSWER_TEXT = "text";
@@ -85,6 +88,7 @@ public class SoalActivity extends AppCompatActivity {
         tempatWaktu =(TextView)findViewById(R.id.textView10);
         Intent i = getIntent();
         a = i.getIntExtra("kirimanDurasi", 0);
+
 
         id_quiz = i.getIntExtra("kirimanIDQuiz", 0);
         tv.setText("Menjawab 0/0 soal");
@@ -206,6 +210,7 @@ public class SoalActivity extends AppCompatActivity {
                 //Log.d("DEBUG", json.getString(JSON_QUESTION_TEXT));
                 mSoal.setId_soal(json.getInt(JSON_ID_SOAL));
                 mSoal.setText(json.getString(JSON_QUESTION_TEXT));
+                mSoal.setGambar(json.getString(JSON_GAMBAR));
                 //busuk
                 JSONArray arrayOpsi = json.getJSONArray(JSON_OPSI_SOAL);
                 for (int j = 0; j < arrayOpsi.length(); j++) {
@@ -243,9 +248,16 @@ public class SoalActivity extends AppCompatActivity {
 
             //create text button
             TextView tempatSoal = new TextView(this);
+            ImageView gambar = new ImageView(this);
+//            gambar.getLayoutParams().height = 200;
+//            gambar.getLayoutParams().width = 200;
+            Picasso.with(getApplicationContext()).load("http://" + ambilIP + "/new_udj/images/"+mSoal.getGambar()).into(gambar);
+
+            System.out.println("gambar"+mSoal.getGambar());
             tempatSoal.setText((k+1) + ". " + mSoal.getText());
             tempatSoal.setTextColor(Color.BLUE);
             mLinearLayout.addView(tempatSoal);
+            mLinearLayout.addView(gambar);
 
             // create radio button
             final int opsiSize = mSoal.getModelOpsiSoal().size();
@@ -323,8 +335,6 @@ public class SoalActivity extends AppCompatActivity {
                         }
                     }
                     Log.d("RADIO_BUTTON", "Jawaban Benar: " + answer_benar);
-
-
                     simpanUye();
 
                 }
@@ -345,7 +355,6 @@ public class SoalActivity extends AppCompatActivity {
                     public void onResponse(String response) {
 
                         Toast.makeText(SoalActivity.this, response, Toast.LENGTH_LONG).show();
-
 
                         Intent intent = new Intent(SoalActivity.this, Akhirnya.class);
                         intent.putExtra("answer_total", answer_soal);
