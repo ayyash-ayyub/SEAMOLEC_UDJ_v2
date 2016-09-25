@@ -3,6 +3,7 @@ package ayyash.app.seamolec_udj;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -37,8 +38,8 @@ public class Akhirnya extends Activity {
         btnAkhir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), PaketSoalActivity.class);
-                startActivity(i);
+
+
 
             }
         });

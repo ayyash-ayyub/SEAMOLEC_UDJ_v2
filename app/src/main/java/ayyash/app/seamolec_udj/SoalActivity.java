@@ -41,7 +41,7 @@ import java.util.Map;
  */
 public class SoalActivity extends AppCompatActivity {
 
-    TextView tv,tempatWaktu;
+    TextView tv, tempatWaktu;
     RequestQueue requestQueue;
     JsonArrayRequest jsonArrayRequest;
     ProgressBar progressBar;
@@ -72,22 +72,25 @@ public class SoalActivity extends AppCompatActivity {
     private int id_quiz;
     private int answer_soal;
     private int answer_benar;
+    private int nRadio;
+    private int nJawab;
     private String ambilIP;
 
 
     //ulala
     public static final String KEY_ID_QUIZ = "id_quiz";
-    public static final String KEY_NIS = "nis";
+    public static final String KEY_NIS = "id_user";
     public static final String KEY_NILAI = "nilai";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_soal);
-        tv = (TextView)findViewById(R.id.textView8);
-        tempatWaktu =(TextView)findViewById(R.id.textView10);
+        tv = (TextView) findViewById(R.id.textView8);
+        tempatWaktu = (TextView) findViewById(R.id.textView10);
         Intent i = getIntent();
         a = i.getIntExtra("kirimanDurasi", 0);
+       // a = 1;
 
 
         id_quiz = i.getIntExtra("kirimanIDQuiz", 0);
@@ -103,13 +106,13 @@ public class SoalActivity extends AppCompatActivity {
 
         mLinearLayout = (LinearLayout) findViewById(R.id.mLinearLayout);
 
-        String [] Soal = {"Berapa?", "Siapa?", "Kapan?", "Dimana?"};
-        String[][] opsiSoal={
-                {"1", "2", "3"} ,
-                { "saya", "kamu", "dia", "mereka", "kita"},
+        String[] Soal = {"Berapa?", "Siapa?", "Kapan?", "Dimana?"};
+        String[][] opsiSoal = {
+                {"1", "2", "3"},
+                {"saya", "kamu", "dia", "mereka", "kita"},
                 {"sekarang", "waktu itu"},
                 {"disini", "disana"}
-        } ;
+        };
 
 ////        int jml_soal = opsiSoal.length - 1;
 ////        for (int x =0; x<Soal.length; x++){
@@ -144,7 +147,7 @@ public class SoalActivity extends AppCompatActivity {
         listSoal = new ArrayList<ModelSoal>();
         //recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
-       // progressBar.setVisibility(View.GONE);
+        // progressBar.setVisibility(View.GONE);
         //buttonLoadPaket = (Button) findViewById(R.id.buttonLoadPaket);
         //recyclerView.setHasFixedSize(true);
         //recyclerViewlayoutManager = new LinearLayoutManager(this);
@@ -167,7 +170,7 @@ public class SoalActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                         //tv.setText("load selesai");
-                   //     progressBar.setVisibility(View.GONE);
+                        //     progressBar.setVisibility(View.GONE);
                         //Log.d("DEBUG", response.toString());
 
                         //aktifkan
@@ -218,7 +221,7 @@ public class SoalActivity extends AppCompatActivity {
                     ModelOpsiSoal mOpsiSoal = new ModelOpsiSoal();
 
                     mOpsiSoal.setText(jsonOpsi.getString(JSON_ANSWER_TEXT));
-                    if (jsonOpsi.getString(JSON_ANSWER_STATUS).equals("1")){
+                    if (jsonOpsi.getString(JSON_ANSWER_STATUS).equals("1")) {
                         mOpsiSoal.setStatus(true);
                     } else {
                         mOpsiSoal.setStatus(false);
@@ -234,7 +237,7 @@ public class SoalActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        tv.setText("Menjawab 0/"+array.length()+" soal");
+        tv.setText("Menjawab 0/" + array.length() + " soal");
 
         loadTampilan();
     }
@@ -249,12 +252,11 @@ public class SoalActivity extends AppCompatActivity {
             //create text button
             TextView tempatSoal = new TextView(this);
             ImageView gambar = new ImageView(this);
-//            gambar.getLayoutParams().height = 200;
-//            gambar.getLayoutParams().width = 200;
+
             Picasso.with(getApplicationContext()).load("http://" + ambilIP + "/new_udj/images/"+mSoal.getGambar()).into(gambar);
 
             System.out.println("gambar"+mSoal.getGambar());
-            tempatSoal.setText((k+1) + ". " + mSoal.getText());
+            tempatSoal.setText((k + 1) + ". " + mSoal.getText());
             tempatSoal.setTextColor(Color.BLUE);
             mLinearLayout.addView(tempatSoal);
             mLinearLayout.addView(gambar);
@@ -265,7 +267,7 @@ public class SoalActivity extends AppCompatActivity {
             RadioGroup rg = new RadioGroup(this);
             rg.setOrientation(RadioGroup.VERTICAL);
             //Log.d("DEBUG", "jumlah opsi soal: "+opsiSize);
-            for (int i1= 0; i1 < opsiSize; i1++) {
+            for (int i1 = 0; i1 < opsiSize; i1++) {
                 //Log.d("DEBUG", "opsi soal ke-"+i1);
                 ModelOpsiSoal mOpsiSoal = mSoal.getModelOpsiSoal().get(i1);
                 rb[i1] = new RadioButton(this);
@@ -275,19 +277,8 @@ public class SoalActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         // cek sesuatu
-                        int child = mLinearLayout.getChildCount();
-                        int nRadio = 0;
-                        int nJawab = 0;
-                        for (int i = 0; i < child; i++) {
-                            if(mLinearLayout.getChildAt(i) instanceof RadioGroup){
-                                nRadio++;
-                                RadioGroup nrg = (RadioGroup) mLinearLayout.getChildAt(i);
-                                if(nrg.getCheckedRadioButtonId() != -1){
-                                    nJawab++;
-                                }
-                            }
-                        }
-                        tv.setText("Menjawab "+nJawab+"/"+nRadio+" soal");
+                        hitungTerjawab();
+                        tv.setText("Menjawab " + nJawab + "/" + nRadio + " soal");
                     }
                 });
             }
@@ -301,55 +292,77 @@ public class SoalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //pemanis belaka
-                int child = mLinearLayout.getChildCount();
-                int nRadio = 0;
-                int nJawab = 0;
-                for (int i = 0; i < child; i++) {
-                    if(mLinearLayout.getChildAt(i) instanceof RadioGroup){
-                        nRadio++;
-                        RadioGroup nrg = (RadioGroup) mLinearLayout.getChildAt(i);
+               // hitungTerjawab();
 
-                        if(nrg.getCheckedRadioButtonId() != -1){
-                            nJawab++;
-                        }
-                    }
-                }
 
-                if(nJawab != nRadio){
+
+                if (nJawab != nRadio) {
                     Toast.makeText(SoalActivity.this, "Soal belum semua terjawab", Toast.LENGTH_LONG).show();
                 } else {
-
-                    answer_benar = 0;
-                    for (int i = 0; i < child; i++) {
-                        if(mLinearLayout.getChildAt(i) instanceof RadioGroup){
-                            RadioGroup nrg = (RadioGroup) mLinearLayout.getChildAt(i);
-                            int radioButtonID = nrg.getCheckedRadioButtonId();
-                            RadioButton radioButton = (RadioButton) findViewById(radioButtonID);
-                            int idx = nrg.indexOfChild(radioButton);
-
-                            ModelSoal tmSoal = listSoal.get(i / 2);
-                            ModelOpsiSoal tmOpsiSoal = tmSoal.getModelOpsiSoal().get(idx);
-                            if(tmOpsiSoal.isStatus()){
-                                answer_benar++;
-                            }
-                        }
-                    }
-                    Log.d("RADIO_BUTTON", "Jawaban Benar: " + answer_benar);
-                    simpanUye();
-
+                    hitungNilai();
                 }
             }
         });
         mLinearLayout.addView(btnSubmit);
     }
 
-    public void simpanUye(){
+    private void hitungNilai(){
+        answer_benar = 0;
+        int index_soal = 0;
+        int child = mLinearLayout.getChildCount();
+        for (int i = 0; i < child; i++) {
+            if (mLinearLayout.getChildAt(i) instanceof RadioGroup) {
+                RadioGroup nrg = (RadioGroup) mLinearLayout.getChildAt(i);
+                int radioButtonID = nrg.getCheckedRadioButtonId();
+                RadioButton radioButton = (RadioButton) findViewById(radioButtonID);
+                int idx = nrg.indexOfChild(radioButton);
 
-        final String a = "aaaa";
-        final String b = "AYYASH";
-        final String c = "100000";
+                if(idx != -1){
 
-        StringRequest sR = new StringRequest(Request.Method.POST, "http://"+ambilIP+"/new_udj/simpanNilai.php",
+                    ModelSoal tmSoal = listSoal.get(index_soal);
+                    ModelOpsiSoal tmOpsiSoal = tmSoal.getModelOpsiSoal().get(idx);
+                    if (tmOpsiSoal.isStatus()) {
+                        answer_benar++;
+                    }
+                }
+                index_soal++;
+            }
+        }
+        Log.d("RADIO_BUTTON", "Jawaban Benar: " + answer_benar);
+        simpanUye();
+
+    }
+
+    private void hitungTerjawab(){
+        int layoutChild = mLinearLayout.getChildCount();
+        nRadio = 0;
+        nJawab = 0;
+        for (int i = 0; i < layoutChild; i++) {
+            if (mLinearLayout.getChildAt(i) instanceof RadioGroup) {
+                nRadio++;
+                RadioGroup nrg = (RadioGroup) mLinearLayout.getChildAt(i);
+                if (nrg.getCheckedRadioButtonId() != -1) {
+                    nJawab++;
+                }
+            }
+        }
+
+    }
+
+    public void simpanUye() {
+        isPaused = true;
+        isPaused = true;
+
+        SharedPreferences sps = getSharedPreferences("", MODE_PRIVATE);
+        String ambilNIS = sps.getString("NISnya", "");
+
+        final String a = String.valueOf(id_quiz).toString().trim();
+        final String b = String.valueOf(ambilNIS).trim();
+        final String c = String.valueOf(answer_benar).trim();
+
+     //   Toast.makeText(getApplicationContext(), "Hasil: "+a+" : "+b+" : "+c,Toast.LENGTH_LONG).show();
+
+        StringRequest sR = new StringRequest(Request.Method.POST, "http://" + ambilIP + "/new_udj/simpannilai.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -372,9 +385,9 @@ public class SoalActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put(KEY_ID_QUIZ, a.toString());
-                params.put(KEY_NIS, b.toString());
-                params.put(KEY_NILAI, c.toString());
+                params.put(KEY_ID_QUIZ, a);
+                params.put(KEY_NIS, b);
+                params.put(KEY_NILAI, c);
 
                 return params;
             }
@@ -383,11 +396,9 @@ public class SoalActivity extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(sR);
-
-
     }
 
-    public void timerHariKamis(){
+    public void timerHariKamis() {
 
         isPaused = false;
         isCanceled = false;
@@ -400,12 +411,12 @@ public class SoalActivity extends AppCompatActivity {
             @Override
             public void onTick(long leftTimeInMilliseconds) {
                 long seconds = leftTimeInMilliseconds / 1000;
-                if(isPaused || isCanceled){
+                if (isPaused || isCanceled) {
                     cancel();
-                }else {
+                } else {
                     if (leftTimeInMilliseconds < timeBlinkInMilliseconds) {
                         //   timerTampil.setTextAppearance(getApplicationContext(),R.style.normalText);
-                        tempatWaktu.setTextColor(Color.rgb(255,255,255));
+                        tempatWaktu.setTextColor(Color.rgb(255, 255, 255));
                         // change the style of the textview .. giving a red
                         // alert style
 
@@ -422,19 +433,20 @@ public class SoalActivity extends AppCompatActivity {
                         blink = !blink; // toggle the value of blink
                     }
                 }
-                tempatWaktu.setText("sisa waktu: "+String.format("%02d", seconds / 60)
+                tempatWaktu.setText("sisa waktu: " + String.format("%02d", seconds / 60)
                         + ":" + String.format("%02d", seconds % 60));
 
             }
 
             @Override
             public void onFinish() {
-                simpanUye();
-                Toast.makeText(getApplicationContext(),"Time's Up, last score sent",Toast.LENGTH_LONG).show();
-               
+                isPaused = true;
+                isPaused = true;
+                hitungNilai();
+                Toast.makeText(getApplicationContext(), "Waktu Habis", Toast.LENGTH_LONG).show();
+                finish();
+
             }
-
-
 
 
         }.start();

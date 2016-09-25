@@ -47,13 +47,13 @@ public class RecyclerViewQuizAdapter extends RecyclerView.Adapter<RecyclerViewQu
 
         getDataAdapter1 =  getDataAdapter.get(position);
 
-        holder.id_kelas.setText(": "+String.valueOf(getDataAdapter1.getId_quiz()).toString());
+        holder.id_kelas.setText(" : "+String.valueOf(getDataAdapter1.getId_quiz()).toString());
 
-        holder.nama_quiz.setText(": "+getDataAdapter1.getNama_quiz().toString());
+        holder.nama_quiz.setText(" : "+getDataAdapter1.getNama_quiz().toString());
 
-        holder.tgl_selesai.setText(": "+getDataAdapter1.getTgl_selesai());
+        holder.tgl_selesai.setText(" : "+getDataAdapter1.getTgl_selesai());
 
-        holder.durasi.setText(": "+String.valueOf(String.valueOf(getDataAdapter1.getDurasi()).toString()));
+        holder.durasi.setText(" : "+String.valueOf(String.valueOf(getDataAdapter1.getDurasi()).toString())+" menit");
 
         btnTampan.setOnClickListener(new View.OnClickListener() {
             @Override

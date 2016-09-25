@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
+
+
         txtIP =(EditText)findViewById(R.id.txtIP);
         btnSentIP = (Button) findViewById(R.id.btnSentIP);
 
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                    //SIERRA_IP = txtIP.getText().toString();
 
                    //for develop
-                   SIERRA_IP = "192.168.50.100";
+                   SIERRA_IP = "192.168.50.128";
 
                    // nyimpan IP di SP
                    sp = getSharedPreferences("",MODE_PRIVATE);

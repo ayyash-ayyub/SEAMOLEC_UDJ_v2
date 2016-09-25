@@ -50,6 +50,7 @@ public class PaketSoalActivity extends AppCompatActivity {
     RecyclerView.LayoutManager recyclerViewlayoutManager;
     RecyclerView.Adapter recyclerViewadapter;
     ProgressBar progressBar;
+    public SharedPreferences sp;
     String nis;
     //String GET_JSON_DATA_HTTP_URL = "http://192.168.50.38/new_udj/jsonData.php";
     String JSON_ID_KELAS = "id_kelas";
@@ -95,6 +96,15 @@ public class PaketSoalActivity extends AppCompatActivity {
 
         cocokanCurrentUser();
         tampilCurrentUser.setText("selamat datang:  : " + nis);
+
+
+        // // nyimpan NIS  di SP
+
+        sp = getSharedPreferences("",MODE_PRIVATE);
+        SharedPreferences.Editor ed = sp.edit();
+        ed.putString("NISnya", nis);
+        ed.commit();
+
     }
 
     private void loadListPaket() {
