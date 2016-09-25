@@ -3,6 +3,7 @@ package ayyash.app.seamolec_udj;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +45,16 @@ public class SoalActivity extends AppCompatActivity {
     ProgressBar progressBar;
     LinearLayout mLinearLayout;
 
+    //script tampan tanggal 9 sept
+    private boolean isPaused = false;
+    private boolean isCanceled = false;
+    private long timeRemaining = 0;
+    private CountDownTimer countDownTimer; // built in android class
+    private long totalTimeCountInMilliseconds; // total count down time in
+    // milliseconds
+    private long timeBlinkInMilliseconds; // start time of start blinking
+    private boolean blink; // controls the blinking .. on and off
+    private int a = 60;
 
 
     List<ModelSoal> listSoal;
@@ -75,6 +86,7 @@ public class SoalActivity extends AppCompatActivity {
         Intent i = getIntent();
         id_quiz = i.getIntExtra("kirimanIDQuiz", 0);
         tv.setText("Menjawab 0/0 soal");
+        timerHariKamis();
         tempatWaktu.setText("Waktu tersisa: ");
 
         SharedPreferences sps = getSharedPreferences("", MODE_PRIVATE);
@@ -367,6 +379,60 @@ public class SoalActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(sR);
 
+
+    }
+
+    public void timerHariKamis(){
+
+        isPaused = false;
+        isCanceled = false;
+        int time = 60;
+
+        totalTimeCountInMilliseconds = a * time * 1000;
+        timeBlinkInMilliseconds = 30 * 1000;
+
+        countDownTimer = new CountDownTimer(totalTimeCountInMilliseconds, 500) {
+            @Override
+            public void onTick(long leftTimeInMilliseconds) {
+                long seconds = leftTimeInMilliseconds / 1000;
+                if(isPaused || isCanceled){
+                    cancel();
+                }else {
+                    if (leftTimeInMilliseconds < timeBlinkInMilliseconds) {
+                        //   timerTampil.setTextAppearance(getApplicationContext(),R.style.normalText);
+                        tempatWaktu.setTextColor(Color.rgb(255,255,255));
+                        // change the style of the textview .. giving a red
+                        // alert style
+
+
+                        if (blink) {
+                            tempatWaktu.setVisibility(View.VISIBLE);
+                            tempatWaktu.setTextColor(Color.RED);
+                            // if blink is true, textview will be visible
+                        } else {
+                            tempatWaktu.setVisibility(View.INVISIBLE);
+                            tempatWaktu.setTextColor(Color.BLACK);
+                        }
+
+                        blink = !blink; // toggle the value of blink
+                    }
+                }
+                tempatWaktu.setText("sisa waktu: "+String.format("%02d", seconds / 60)
+                        + ":" + String.format("%02d", seconds % 60));
+
+            }
+
+            @Override
+            public void onFinish() {
+                
+                Toast.makeText(getApplicationContext(),"Time's Up, last score sent",Toast.LENGTH_LONG).show();
+               
+            }
+
+
+
+
+        }.start();
 
     }
 
