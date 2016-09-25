@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -23,29 +24,29 @@ public class Splash extends AppCompatActivity {
 
         setContentView(R.layout.activity_splash);
 
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                Intent i = new Intent(Splash.this, MainActivity.class);
-                startActivity(i);
-                finish();
-
-
-                //jeda selesai Splashscreen
-                this.finish();
-            }
-
-            private void finish() {
-                // TODO Auto-generated method stub
-
-            }
-        }, splashInterval);
-
-    };
+        if (getIntent().getBooleanExtra("EXIT", false)) {
+            Log.e("EXIT", "bye, bye Activity...");
+            finish();
+        } else {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    // TODO Auto-generated method stub
+                    Intent i = new Intent(Splash.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
 
 
+                    //jeda selesai Splashscreen
+                    this.finish();
+                }
 
+                private void finish() {
+                    // TODO Auto-generated method stub
+
+                }
+            }, splashInterval);
+        }
     }
+}
 

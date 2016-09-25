@@ -58,7 +58,6 @@ public class SoalActivity extends AppCompatActivity {
     private boolean blink; // controls the blinking .. on and off
     private int a;
 
-
     List<ModelSoal> listSoal;
 
     String JSON_ID_SOAL = "id_soal";
@@ -292,15 +291,12 @@ public class SoalActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //pemanis belaka
-               // hitungTerjawab();
+                // hitungTerjawab();
 
 
-
-                if (nJawab != nRadio) {
-                    Toast.makeText(SoalActivity.this, "Soal belum semua terjawab", Toast.LENGTH_LONG).show();
-                } else {
-                    hitungNilai();
-                }
+                isCanceled = true;
+                countDownTimer.cancel();
+                hitungNilai();
             }
         });
         mLinearLayout.addView(btnSubmit);
@@ -318,7 +314,6 @@ public class SoalActivity extends AppCompatActivity {
                 int idx = nrg.indexOfChild(radioButton);
 
                 if(idx != -1){
-
                     ModelSoal tmSoal = listSoal.get(index_soal);
                     ModelOpsiSoal tmOpsiSoal = tmSoal.getModelOpsiSoal().get(idx);
                     if (tmOpsiSoal.isStatus()) {
@@ -412,6 +407,7 @@ public class SoalActivity extends AppCompatActivity {
             public void onTick(long leftTimeInMilliseconds) {
                 long seconds = leftTimeInMilliseconds / 1000;
                 if (isPaused || isCanceled) {
+                    Log.e("TIMER", "Timer dibatalkan");
                     cancel();
                 } else {
                     if (leftTimeInMilliseconds < timeBlinkInMilliseconds) {
@@ -435,17 +431,16 @@ public class SoalActivity extends AppCompatActivity {
                 }
                 tempatWaktu.setText("sisa waktu: " + String.format("%02d", seconds / 60)
                         + ":" + String.format("%02d", seconds % 60));
-
             }
 
             @Override
             public void onFinish() {
                 isPaused = true;
                 isPaused = true;
+
                 hitungNilai();
                 Toast.makeText(getApplicationContext(), "Waktu Habis", Toast.LENGTH_LONG).show();
                 finish();
-
             }
 
 
