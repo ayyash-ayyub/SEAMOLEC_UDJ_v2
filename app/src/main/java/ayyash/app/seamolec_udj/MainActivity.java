@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                    //SIERRA_IP = txtIP.getText().toString();
 
                    //for develop
-                   SIERRA_IP = "192.168.50.128";
+                   SIERRA_IP = "192.168.50.100";
 
                    // nyimpan IP di SP
                    sp = getSharedPreferences("",MODE_PRIVATE);

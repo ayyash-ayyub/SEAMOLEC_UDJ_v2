@@ -11,6 +11,7 @@ public class ModelSoal {
 
     private int id_soal;
     private String text;
+    private String gambar;
     private List<ModelOpsiSoal> modelOpsiSoal;
 
     public ModelSoal(){
@@ -39,5 +40,12 @@ public class ModelSoal {
 
     public List<ModelOpsiSoal> getModelOpsiSoal() {
         return modelOpsiSoal;
+    }
+    public String getGambar() {
+        return gambar;
+    }
+
+    public void setGambar(String gambar) {
+        this.gambar = gambar;
     }
 }
