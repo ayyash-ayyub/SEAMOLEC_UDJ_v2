@@ -54,7 +54,7 @@ public class SoalActivity extends AppCompatActivity {
     // milliseconds
     private long timeBlinkInMilliseconds; // start time of start blinking
     private boolean blink; // controls the blinking .. on and off
-    private int a = 60;
+    private int a;
 
 
     List<ModelSoal> listSoal;
@@ -84,6 +84,8 @@ public class SoalActivity extends AppCompatActivity {
         tv = (TextView)findViewById(R.id.textView8);
         tempatWaktu =(TextView)findViewById(R.id.textView10);
         Intent i = getIntent();
+        a = i.getIntExtra("kirimanDurasi", 0);
+
         id_quiz = i.getIntExtra("kirimanIDQuiz", 0);
         tv.setText("Menjawab 0/0 soal");
         timerHariKamis();
@@ -337,12 +339,6 @@ public class SoalActivity extends AppCompatActivity {
         final String b = "AYYASH";
         final String c = "100000";
 
-
-
-
-
-
-
         StringRequest sR = new StringRequest(Request.Method.POST, "http://"+ambilIP+"/new_udj/simpanNilai.php",
                 new Response.Listener<String>() {
                     @Override
@@ -424,7 +420,7 @@ public class SoalActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                
+                simpanUye();
                 Toast.makeText(getApplicationContext(),"Time's Up, last score sent",Toast.LENGTH_LONG).show();
                
             }

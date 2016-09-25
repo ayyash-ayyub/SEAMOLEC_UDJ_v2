@@ -63,6 +63,7 @@ public class RecyclerViewQuizAdapter extends RecyclerView.Adapter<RecyclerViewQu
                 Intent i = new Intent(context, SoalActivity.class);
 
                 i.putExtra("kirimanIDQuiz", id_quiz);
+                i.putExtra("kirimanDurasi", getDataAdapter.get(position).getDurasi());
                 context.startActivity(i);
 
 
