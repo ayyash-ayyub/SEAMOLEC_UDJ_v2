@@ -21,7 +21,8 @@
         android:id="@+id/recyclerView1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/toolbar">
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/buttonLoadPaket">
     </android.support.v7.widget.RecyclerView>
 
     <ProgressBar

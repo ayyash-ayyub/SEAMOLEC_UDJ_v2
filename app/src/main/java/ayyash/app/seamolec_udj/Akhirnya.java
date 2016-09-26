@@ -43,15 +43,24 @@ public class Akhirnya extends Activity {
         btnAkhir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            Intent intent = new Intent(getApplicationContext(), Splash.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            intent.putExtra("EXIT", true);
-            startActivity(intent);
-//            Intent intent = new Intent(Akhirnya.this, PaketSoalActivity.class);
+//            Intent intent = new Intent(getApplicationContext(), Splash.class);
+//            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //            intent.putExtra("EXIT", true);
 //            startActivity(intent);
+            Intent intent = new Intent(Akhirnya.this, PaketSoalActivity.class);
+            intent.putExtra("EXIT", true);
+            startActivity(intent);
+                finish();
 
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Akhirnya.this, PaketSoalActivity.class);
+        intent.putExtra("EXIT", true);
+        startActivity(intent);
+        finish();
     }
 }

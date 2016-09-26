@@ -228,7 +228,6 @@ public class PaketSoalActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
 
-
     }
 
     private void showJSON(String response) {
@@ -247,9 +246,6 @@ public class PaketSoalActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        // tampilCurrentUser.setText("LoginActivity as: "+nama);
-
-        // Toast.makeText(getApplicationContext(),"test lagi : " + niss +nama +cur_id_kelas, Toast.LENGTH_LONG).show();
         Log.d("eco: ", response);
     }
 
@@ -266,19 +262,11 @@ public class PaketSoalActivity extends AppCompatActivity {
 
                         SharedPreferences preferences = getSharedPreferences(ConfigUmum.SHARED_PREF_NAME, Context.MODE_PRIVATE);
                         SharedPreferences.Editor editor = preferences.edit();
-
-
                         editor.putBoolean(ConfigUmum.LOGGEDIN_SHARED_PREF, false);
-
-
                         editor.putString(ConfigUmum.NIS_SHARED_PREF, "");
-
-
                         editor.commit();
 
-
                         //clear sp IP
-
 
                         Intent intent = new Intent(PaketSoalActivity.this, LoginActivity.class);
                         startActivity(intent);
@@ -315,5 +303,10 @@ public class PaketSoalActivity extends AppCompatActivity {
             logout();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }

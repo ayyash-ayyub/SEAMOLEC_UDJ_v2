@@ -213,11 +213,18 @@ public class RegisterActivity extends AppCompatActivity implements Spinner.OnIte
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        textViewName.setText(getIdKelas(position));
+        //textViewName.setText(getIdKelas(position));
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         // nothing to do
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i = new Intent(RegisterActivity.this, LoginActivity.class);
+        startActivity(i);
+        finish();
     }
 }

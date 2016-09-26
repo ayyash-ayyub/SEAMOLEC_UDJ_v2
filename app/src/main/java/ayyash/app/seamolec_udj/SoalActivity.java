@@ -78,7 +78,7 @@ public class SoalActivity extends AppCompatActivity {
 
     //ulala
     public static final String KEY_ID_QUIZ = "id_quiz";
-    public static final String KEY_NIS = "id_user";
+    public static final String KEY_NIS = "nis";
     public static final String KEY_NILAI = "nilai";
 
     @Override
@@ -346,14 +346,15 @@ public class SoalActivity extends AppCompatActivity {
 
     public void simpanUye() {
         isPaused = true;
-        isPaused = true;
+        isCanceled = true;
 
         SharedPreferences sps = getSharedPreferences("", MODE_PRIVATE);
         String ambilNIS = sps.getString("NISnya", "");
 
         final String a = String.valueOf(id_quiz).toString().trim();
         final String b = String.valueOf(ambilNIS).trim();
-        final String c = String.valueOf(answer_benar).trim();
+        final String c = String.valueOf(answer_benar*100/answer_soal).trim();
+        //benar * 100 / total
 
      //   Toast.makeText(getApplicationContext(), "Hasil: "+a+" : "+b+" : "+c,Toast.LENGTH_LONG).show();
 

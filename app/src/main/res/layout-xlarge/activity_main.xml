@@ -3,9 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="@color/colorPrimary"
     android:layout_height="match_parent"
+    android:weightSum="1"
     android:gravity="center">
-
-
 
     <TextView
         android:layout_width="wrap_content"
@@ -27,7 +26,8 @@
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
         android:background="@drawable/edittext_login_form"
-        android:id="@+id/txtIP" />
+        android:id="@+id/txtIP"
+        android:layout_weight="0.04" />
 
     <Space
         android:layout_width="20px"

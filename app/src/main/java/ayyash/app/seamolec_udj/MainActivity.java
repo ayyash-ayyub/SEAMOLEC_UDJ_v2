@@ -42,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
 //               }else {
 
                    //for dinamis
-                   //SIERRA_IP = txtIP.getText().toString();
+                   SIERRA_IP = txtIP.getText().toString();
 
                    //for develop
-                   SIERRA_IP = "192.168.50.128";
+                   //SIERRA_IP = "192.168.50.50";
 
                    // nyimpan IP di SP
                    sp = getSharedPreferences("",MODE_PRIVATE);

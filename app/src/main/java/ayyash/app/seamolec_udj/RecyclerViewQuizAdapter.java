@@ -47,14 +47,10 @@ public class RecyclerViewQuizAdapter extends RecyclerView.Adapter<RecyclerViewQu
         this.holderLuar =holder;
 
         getDataAdapter1 =  getDataAdapter.get(position);
-
-        holder.id_kelas.setText(" : "+String.valueOf(getDataAdapter1.getId_quiz()).toString());
-
-        holder.nama_quiz.setText(" : "+getDataAdapter1.getNama_quiz().toString());
-
-        holder.tgl_selesai.setText(" : "+getDataAdapter1.getTgl_selesai());
-
-        holder.durasi.setText(" : "+String.valueOf(String.valueOf(getDataAdapter1.getDurasi()).toString())+" menit");
+        //holder.id_kelas.setText(" : "+String.valueOf(getDataAdapter1.getId_quiz()).toString());
+        holder.nama_quiz.setText(getDataAdapter1.getNama_quiz().toString());
+        holder.tgl_selesai.setText(getDataAdapter1.getTgl_selesai());
+        holder.durasi.setText(String.valueOf(String.valueOf(getDataAdapter1.getDurasi()).toString())+" menit");
 
         btnTampan.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,7 +98,7 @@ public class RecyclerViewQuizAdapter extends RecyclerView.Adapter<RecyclerViewQu
             super(itemView);
 
 
-            id_kelas = (TextView) itemView.findViewById(R.id.tampilIdKelas) ;
+            //id_kelas = (TextView) itemView.findViewById(R.id.tampilIdKelas) ;
             nama_quiz = (TextView) itemView.findViewById(R.id.tampilNamaQuiz) ;
             tgl_selesai = (TextView) itemView.findViewById(R.id.batasAkhir) ;
             durasi = (TextView) itemView.findViewById(R.id.tampilDurasi) ;
