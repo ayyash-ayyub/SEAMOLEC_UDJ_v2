@@ -252,7 +252,7 @@ public class SoalActivity extends AppCompatActivity {
             TextView tempatSoal = new TextView(this);
             ImageView gambar = new ImageView(this);
 
-            Picasso.with(getApplicationContext()).load("http://" + ambilIP + "/new_udj/images/"+mSoal.getGambar()).into(gambar);
+            Picasso.with(getApplicationContext()).load("http://" + ambilIP + "/udj/assets/img/soal/"+mSoal.getGambar()).into(gambar);
 
             System.out.println("gambar"+mSoal.getGambar());
             tempatSoal.setText((k + 1) + ". " + mSoal.getText());

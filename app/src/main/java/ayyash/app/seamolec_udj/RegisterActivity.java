@@ -213,7 +213,7 @@ public class RegisterActivity extends AppCompatActivity implements Spinner.OnIte
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        //textViewName.setText(getIdKelas(position));
+        textViewName.setText(getIdKelas(position)+"");
     }
 
     @Override
