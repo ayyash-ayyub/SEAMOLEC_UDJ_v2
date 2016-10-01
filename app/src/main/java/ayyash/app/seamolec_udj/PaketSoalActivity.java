@@ -67,6 +67,7 @@ public class PaketSoalActivity extends AppCompatActivity {
     private ArrayList<String> students = new ArrayList<>();
     private JSONArray result;
     private ProgressDialog loading;
+    TextView txtAwal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,7 @@ public class PaketSoalActivity extends AppCompatActivity {
 
         tampilCurrentUser = (TextView) findViewById(R.id.textView6);
         buttonLoadPaket = (Button) findViewById(R.id.buttonLoadPaket);
+        txtAwal = (TextView)findViewById(R.id.txtAwal);
 
         /* Top toolbar */
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -127,7 +129,7 @@ public class PaketSoalActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 progressBar.setVisibility(View.VISIBLE);
-
+                txtAwal.setVisibility(View.GONE);
                 JSON_DATA_WEB_CALL();
 
             }
@@ -142,6 +144,8 @@ public class PaketSoalActivity extends AppCompatActivity {
                     @Override
                     public void onResponse(JSONArray response) {
                         progressBar.setVisibility(View.GONE);
+                        txtAwal.setVisibility(View.GONE);
+
                         //aktifkan
                         JSON_PARSE_DATA_AFTER_WEBCALL(response);
 
@@ -161,7 +165,10 @@ public class PaketSoalActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Toast.makeText(getApplicationContext(),"Quiz Tidak Ditemukan",Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
+                        txtAwal.setVisibility(View.VISIBLE);
+                        txtAwal.setText("Quiz tidak ditemukan.");
                     }
                 });
 

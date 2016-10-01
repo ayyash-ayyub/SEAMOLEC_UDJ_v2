@@ -12,10 +12,12 @@
         android:minHeight="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title="Daftar Paket Soal :"
+        app:title="Daftar Paket Soal"
         app:titleTextColor="#fff"
         android:background="?attr/colorPrimary">
     </android.support.v7.widget.Toolbar>
+
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView1"
@@ -24,7 +26,15 @@
         android:layout_below="@+id/toolbar"
         android:layout_above="@+id/buttonLoadPaket">
     </android.support.v7.widget.RecyclerView>
-
+    <TextView
+        android:id="@+id/txtAwal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:text="Load Quiz !"/>
     <ProgressBar
         android:id="@+id/progressBar1"
         style="?android:attr/progressBarStyleLarge"
@@ -37,7 +47,7 @@
     <Button
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Load Paket soal"
+        android:text="Load Quiz"
         android:id="@+id/buttonLoadPaket"
 
         android:layout_alignParentBottom="true" />

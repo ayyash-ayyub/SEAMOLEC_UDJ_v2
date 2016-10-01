@@ -4,6 +4,21 @@
     android:background="@color/colorPrimary"
     android:layout_height="match_parent"
     android:gravity="center">
+    <TextView
+
+        android:text="Login"
+        android:gravity="center"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:textColor="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="50dp" />
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

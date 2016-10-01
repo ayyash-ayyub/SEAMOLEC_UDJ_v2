@@ -358,7 +358,7 @@ public class SoalActivity extends AppCompatActivity {
 
      //   Toast.makeText(getApplicationContext(), "Hasil: "+a+" : "+b+" : "+c,Toast.LENGTH_LONG).show();
 
-        StringRequest sR = new StringRequest(Request.Method.POST, "http://" + ambilIP + "/new_udj/simpannilai.php",
+        StringRequest sR = new StringRequest(Request.Method.POST, "http://" + ambilIP + "/new_udj/simpanNilai.php",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {

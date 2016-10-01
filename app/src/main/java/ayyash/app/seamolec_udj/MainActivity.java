@@ -10,6 +10,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  * Created by Abdul Rizal Adompo on 9/18/2016.
@@ -37,9 +38,9 @@ public class MainActivity extends AppCompatActivity {
         btnSentIP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//               if(txtIP.getText().toString().isEmpty()){
-//                   Toast.makeText(MainActivity.this, "masukan IP Server", Toast.LENGTH_SHORT).show();
-//               }else {
+               if(txtIP.getText().toString().isEmpty()){
+                   Toast.makeText(MainActivity.this, "masukan Host Server", Toast.LENGTH_SHORT).show();
+               }else {
 
                    //for dinamis
                    SIERRA_IP = txtIP.getText().toString();
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                    startActivity(i);
                    finish();
                }
-      //      }
+            }
         });
     }
 }
