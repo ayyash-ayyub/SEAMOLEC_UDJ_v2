@@ -1,4 +1,4 @@
-package ayyash.app.seamolec_udj;
+package ayyash.app.sierra_udj;
 
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -52,7 +52,6 @@ public class PaketSoalActivity extends AppCompatActivity {
     ProgressBar progressBar;
     public SharedPreferences sp;
     String nis;
-    //String GET_JSON_DATA_HTTP_URL = "http://192.168.50.38/new_udj/jsonData.php";
     String JSON_ID_KELAS = "id_kelas";
     String JSON_NAMA_QUIZ = "nama_quiz";
     String JSON_ID_QUIZ = "id_quiz";
@@ -148,17 +147,6 @@ public class PaketSoalActivity extends AppCompatActivity {
 
                         //aktifkan
                         JSON_PARSE_DATA_AFTER_WEBCALL(response);
-
-//                       try {
-//                           for (int i = 0; i < response.length(); i++) {
-//                               JSONObject row = response.getJSONObject(i);
-//                               ambilIDKelas = row.getInt("id_kelas");
-//                               ambilNamaQuiz = row.getString("nama_quiz");
-//                           }
-//                           Toast.makeText(getApplicationContext(),"ID Kelas : "+ambilIDKelas+ "Nama Quiz : " +ambilNamaQuiz, Toast.LENGTH_SHORT).show();
-//                       } catch (JSONException e) {
-//                           e.printStackTrace();
-//                       }
 
                     }
                 },

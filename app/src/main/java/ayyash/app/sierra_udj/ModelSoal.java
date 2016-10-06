@@ -1,4 +1,4 @@
-package ayyash.app.seamolec_udj;
+package ayyash.app.sierra_udj;
 
 import java.util.ArrayList;
 import java.util.List;

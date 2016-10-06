@@ -1,4 +1,4 @@
-package ayyash.app.seamolec_udj;
+package ayyash.app.sierra_udj;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -251,6 +251,7 @@ public class SoalActivity extends AppCompatActivity {
             //create text button
             TextView tempatSoal = new TextView(this);
             ImageView gambar = new ImageView(this);
+
 
             Picasso.with(getApplicationContext()).load("http://" + ambilIP + "/udj/assets/img/soal/"+mSoal.getGambar()).into(gambar);
 

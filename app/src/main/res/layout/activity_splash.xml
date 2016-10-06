@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="ayyash.app.seamolec_udj.Splash"
+    tools:context="ayyash.app.sierra_udj.Splash"
     android:background="#000000">
 
     <FrameLayout

@@ -1,4 +1,4 @@
-package ayyash.app.seamolec_udj;
+package ayyash.app.sierra_udj;
 
 import android.content.Intent;
 import android.os.Handler;

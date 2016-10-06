@@ -1,17 +1,11 @@
-package ayyash.app.seamolec_udj;
+package ayyash.app.sierra_udj;
 
 import android.app.Activity;
-import android.app.ActivityManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import java.util.List;
 
 /**
  * Created by Abdul Rizal Adompo on 24/09/2016.

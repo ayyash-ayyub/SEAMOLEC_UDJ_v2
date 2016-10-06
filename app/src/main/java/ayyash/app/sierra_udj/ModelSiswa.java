@@ -4,9 +4,8 @@
  * You must provide developer name on your project.
  */
 
-package ayyash.app.seamolec_udj;
+package ayyash.app.sierra_udj;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**

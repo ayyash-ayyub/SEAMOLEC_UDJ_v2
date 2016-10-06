@@ -1,4 +1,4 @@
-package ayyash.app.seamolec_udj;
+package ayyash.app.sierra_udj;
 
 /**
  * Created by Abdul Rizal Adompo on 24/09/2016.

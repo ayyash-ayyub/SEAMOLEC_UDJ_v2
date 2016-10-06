@@ -1,4 +1,4 @@
-package ayyash.app.seamolec_udj;
+package ayyash.app.sierra_udj;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -66,9 +66,6 @@ public class RecyclerViewQuizAdapter extends RecyclerView.Adapter<RecyclerViewQu
 
             }
         });
-
-
-
     }
 
     @Override
@@ -77,12 +74,6 @@ public class RecyclerViewQuizAdapter extends RecyclerView.Adapter<RecyclerViewQu
         return getDataAdapter.size();
 
     }
-
-
-
-
-
-
 
     class ViewHolder extends RecyclerView.ViewHolder {
 
