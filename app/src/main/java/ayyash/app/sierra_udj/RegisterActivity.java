@@ -77,8 +77,6 @@ public class RegisterActivity extends AppCompatActivity implements Spinner.OnIte
                 } else {
                     registerUser();
                 }
-//
-//                Log.d("UYEEEE", a+ " " + b + " " + c + "  " +d );
 
             }
         });
@@ -100,6 +98,7 @@ public class RegisterActivity extends AppCompatActivity implements Spinner.OnIte
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        System.out.println("http://" + ambilIP + "/new_udj/get_kelas.php");
                         JSONObject j;
                         try {
                             //Parsing the fetched Json String to JSON Object

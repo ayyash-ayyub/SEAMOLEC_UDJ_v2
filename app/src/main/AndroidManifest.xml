@@ -13,19 +13,21 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="ayyash.app.sierra_udj.MainActivity" />
-        <activity android:name="ayyash.app.sierra_udj.Splash">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="ayyash.app.sierra_udj.LoginActivity" />
-        <activity android:name="ayyash.app.sierra_udj.RegisterActivity" />
-        <activity android:name="ayyash.app.sierra_udj.PaketSoalActivity" />
-        <activity android:name="ayyash.app.sierra_udj.SoalActivity" />
-        <activity android:name="ayyash.app.sierra_udj.Akhirnya" />
+        <activity android:name=".Splash"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".PaketSoalActivity" />
+        <activity android:name=".SoalActivity" />
+        <activity android:name=".Akhirnya" />
+        <activity android:name=".KodeQuiz"
+            android:theme="@style/Theme.AppCompat.Light.Dialog"></activity>
     </application>
 
 </manifest>

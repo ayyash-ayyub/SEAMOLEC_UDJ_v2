@@ -24,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -34,6 +35,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import uk.co.senab.photoview.PhotoView;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 
 /**
@@ -113,33 +117,7 @@ public class SoalActivity extends AppCompatActivity {
                 {"disini", "disana"}
         };
 
-////        int jml_soal = opsiSoal.length - 1;
-////        for (int x =0; x<Soal.length; x++){
-////            System.out.println("soal "+ Soal[x]);
-////            for (int y=0; y < opsiSoal[x].length; y++){
-////                System.out.println(opsiSoal[x][y]);
-////            }
-////        }
-//
-//        for (int k = 0; k < Soal.length; k++) {
-//            //create text button
-//
-//            TextView tempatSoal = new TextView(this);
-//            tempatSoal.setText(Soal[k]);
-//            tempatSoal.setTextColor(Color.BLUE);
-//            mLinearLayout.addView(tempatSoal);
-//            // create radio button
-//            final RadioButton[] rb = new RadioButton[6];
-//            RadioGroup rg = new RadioGroup(this);
-//            rg.setOrientation(RadioGroup.VERTICAL);
-//            for (int l=0; l<opsiSoal[k].length; l++ ){
-//                rb[l] = new RadioButton(this);
-//                rg.addView(rb[l]);
-//                rb[l].setText(opsiSoal[k][l]);
-//            }
-//
-//            mLinearLayout.addView(rg);
-//        }
+
     }
 
     private void loadListSoal() {
@@ -250,11 +228,23 @@ public class SoalActivity extends AppCompatActivity {
 
             //create text button
             TextView tempatSoal = new TextView(this);
-            ImageView gambar = new ImageView(this);
+            PhotoView gambar = new PhotoView(this);
 
+            final PhotoViewAttacher attacher = new PhotoViewAttacher(gambar);
 
-            Picasso.with(getApplicationContext()).load("http://" + ambilIP + "/udj/assets/img/soal/"+mSoal.getGambar()).into(gambar);
+//            Picasso.with(getApplicationContext()).load("http://" + ambilIP + "/udj/assets/img/soal/"+mSoal.getGambar()).into(gambar);
+            Picasso.with(this)
+                    .load("http://" + ambilIP + "/udj/assets/img/soal/"+mSoal.getGambar())
+                    .into(gambar, new Callback() {
+                        @Override
+                        public void onSuccess() {
+                            attacher.update();
+                        }
 
+                        @Override
+                        public void onError() {
+                        }
+                    });
             System.out.println("gambar"+mSoal.getGambar());
             tempatSoal.setText((k + 1) + ". " + mSoal.getText());
             tempatSoal.setTextColor(Color.BLUE);

@@ -56,14 +56,16 @@ public class RecyclerViewQuizAdapter extends RecyclerView.Adapter<RecyclerViewQu
             @Override
             public void onClick(View v) {
 
+
+
                 int id_quiz = getDataAdapter.get(position).getId_quiz();
                 Intent i = new Intent(context, SoalActivity.class);
 
                 i.putExtra("kirimanIDQuiz", id_quiz);
                 i.putExtra("kirimanDurasi", getDataAdapter.get(position).getDurasi());
                 context.startActivity(i);
-                ((Activity) context).finish();
-
+//                ((PaketSoalActivity) context).finish();
+//                ((PaketSoalActivity)context).Validasi();
             }
         });
     }

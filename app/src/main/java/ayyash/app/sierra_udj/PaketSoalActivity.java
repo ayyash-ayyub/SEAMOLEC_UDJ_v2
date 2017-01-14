@@ -1,5 +1,6 @@
 package ayyash.app.sierra_udj;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -67,6 +69,9 @@ public class PaketSoalActivity extends AppCompatActivity {
     private JSONArray result;
     private ProgressDialog loading;
     TextView txtAwal;
+
+
+    Dialog kodeQuiz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -244,6 +249,24 @@ public class PaketSoalActivity extends AppCompatActivity {
         Log.d("eco: ", response);
     }
 
+    public void Validasi() {
+        // TODO Auto-generated method stub
+        kodeQuiz  = new Dialog(PaketSoalActivity.this,android.R.style.Theme_Translucent);
+        kodeQuiz.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        kodeQuiz.setCancelable(false);
+        kodeQuiz.setContentView(R.layout.activity_kode_kuis);
+        Button btnclose = (Button)kodeQuiz.findViewById(R.id.btnSubmitKode);
+        btnclose.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // TODO Auto-generated method stub
+                finish();
+            }
+        });
+        kodeQuiz.show();
+    }
 
     private void logout() {
 
@@ -304,4 +327,6 @@ public class PaketSoalActivity extends AppCompatActivity {
     public void onBackPressed() {
         finish();
     }
+
+
 }

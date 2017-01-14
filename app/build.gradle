@@ -30,6 +30,9 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:recyclerview-v7:23.0.+'
 
+    compile group: 'com.github.chrisbanes.photoview', name: 'library', version: '1.2.3'
+
+
     //gson retrofit
     compile 'com.google.code.gson:gson:2.6.2'
     compile 'com.mcxiaoke.volley:library-aar:1.0.0'
